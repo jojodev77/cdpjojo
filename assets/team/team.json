@@ -1,0 +1,53 @@
+[
+    {
+        "name": "Rio",
+        "status": "actif",
+        "image": "assets/team/rio.jpg",
+        "happyFactor": 6,
+        "fearFactor": 6,
+        "trustPlanFactor": 7,
+        "trustProfessorFactor": 7,
+        "crazyFactor": 4,
+        "capacityWeaponFactor": 6,
+        "capacityHostageFactor": 8,
+        "capacityTechnologyFactor": 5,
+        "capacityExplosiveFactor": 6,
+        "positionOfPlan": "Salon4",
+        "price": 500,
+        "selected": false
+    },
+    {
+        "name": "Denver",
+        "status": "actif",
+        "image": "assets/team/denver.jpg",
+        "happyFactor": 6,
+        "fearFactor": 6,
+        "trustPlanFactor": 7,
+        "trustProfessorFactor": 7,
+        "crazyFactor": 4,
+        "capacityWeaponFactor": 6,
+        "capacityHostageFactor": 8,
+        "capacityTechnologyFactor": 5,
+        "capacityExplosiveFactor": 6,
+        "positionOfPlan": "Salon4",
+        "price": 56,
+        "selected": false
+    },
+    {
+        "name": "Nairobi",
+        "status": "actif",
+        "image": "assets/team/denver.jpg",
+        "happyFactor": 6,
+        "fearFactor": 6,
+        "trustPlanFactor": 7,
+        "trustProfessorFactor": 7,
+        "crazyFactor": 4,
+        "capacityWeaponFactor": 6,
+        "capacityHostageFactor": 8,
+        "capacityTechnologyFactor": 5,
+        "capacityExplosiveFactor": 6,
+        "positionOfPlan": "Salon4",
+        "price": 0,
+        "selected": false
+    }
+]
