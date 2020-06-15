@@ -61,8 +61,8 @@ class _TeamListState extends State<TeamList> {
             if (snapshot.hasError) print(snapshot.error);
 
             return snapshot.hasData
-                ? PhotosList(
-                    photos: snapshot.data,
+                ? TeamListView(
+                    teams: snapshot.data,
                     money: this.money.toString(),
                     teamSave: team
                     )
@@ -75,8 +75,8 @@ class _TeamListState extends State<TeamList> {
   }
 }
 
-class PhotosList extends StatefulWidget {
-  final List<Team> photos;
+class TeamListView extends StatefulWidget {
+  final List<Team> teams;
   var money;
   Team team;
   Team teamSave = Team();
@@ -91,13 +91,13 @@ class PhotosList extends StatefulWidget {
     printTime: false,
   ));
 
-  PhotosList({Key key, this.photos, this.money, this.teamSave})
+  TeamListView({Key key, this.teams, this.money, this.teamSave})
       : super(key: key);
   @override
-  PhotosListState createState() => PhotosListState();
+  TeamListViewState createState() => TeamListViewState();
 }
 
-class PhotosListState extends State<PhotosList> {
+class TeamListViewState extends State<TeamListView> {
   var money;
 
   SharedPrefMoney sharedPrefMoney = SharedPrefMoney();
@@ -109,7 +109,7 @@ class PhotosListState extends State<PhotosList> {
       resizeToAvoidBottomPadding: false,
       resizeToAvoidBottomInset: false,
       body: ListView.builder(
-        itemCount: widget.photos.length,
+        itemCount: widget.teams.length,
         itemBuilder: (context, index) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -128,12 +128,12 @@ class PhotosListState extends State<PhotosList> {
                     children: <Widget>[
                       ListTile(
                         leading: Image.network(
-                          widget.photos[index].image,
+                          widget.teams[index].image,
                           fit: BoxFit.fitWidth,
                         ),
-                        title: Text(widget.photos[index].name),
+                        title: Text(widget.teams[index].name),
                         subtitle: Image.asset(
-                          widget.photos[index].image,
+                          widget.teams[index].image,
                           width: 100,
                           height: 100,
                           fit: BoxFit.contain,
@@ -142,7 +142,7 @@ class PhotosListState extends State<PhotosList> {
                       Padding(
                         padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                       ),
-                      Text('${widget.photos[index].price}' + '€'),
+                      Text('${widget.teams[index].price}' + '€'),
                       Padding(
                         padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                       ),
@@ -151,7 +151,7 @@ class PhotosListState extends State<PhotosList> {
                           Text(
                               'Gestion des armes:' +
                                   "" +
-                                  widget.photos[index].capacityWeaponFactor
+                                  widget.teams[index].capacityWeaponFactor
                                       .toString() +
                                   '/10',
                               style: TextStyle(
@@ -163,7 +163,7 @@ class PhotosListState extends State<PhotosList> {
                           Text(
                               'Gestion des explosifs:' +
                                   "" +
-                                  widget.photos[index].capacityExplosiveFactor
+                                  widget.teams[index].capacityExplosiveFactor
                                       .toString() +
                                   '/10',
                               style: TextStyle(
@@ -175,7 +175,7 @@ class PhotosListState extends State<PhotosList> {
                           Text(
                               'Gestion des otages:' +
                                   "" +
-                                  widget.photos[index].capacityHostageFactor
+                                  widget.teams[index].capacityHostageFactor
                                       .toString() +
                                   '/10',
                               style: TextStyle(
@@ -187,7 +187,7 @@ class PhotosListState extends State<PhotosList> {
                           Text(
                               'Gestion de la technologie:' +
                                   "" +
-                                  widget.photos[index].capacityTechnologyFactor
+                                  widget.teams[index].capacityTechnologyFactor
                                       .toString() +
                                   '/10',
                               style: TextStyle(
@@ -205,7 +205,7 @@ class PhotosListState extends State<PhotosList> {
                                     Text(
                                         'Joyeuxxx:' +
                                             "" +
-                                            widget.photos[index].happyFactor
+                                            widget.teams[index].happyFactor
                                                 .toString() +
                                             '/10',
                                         style: TextStyle(
@@ -216,21 +216,36 @@ class PhotosListState extends State<PhotosList> {
                                             )),
                                     Text('Folie:' +
                                         "" +
-                                        widget.photos[index].crazyFactor
+                                        widget.teams[index].crazyFactor
                                             .toString() +
                                         '/10'),
                                     Text('Peur:' +
                                         "" +
-                                        widget.photos[index].fearFactor
+                                        widget.teams[index].fearFactor
                                             .toString() +
                                         '/10'),
-                                        widget.photos[index].selected ==
+                                        widget.teams[index].selected ==
                                               'true'?
                                     FlatButton(
                                       child:  const Text('Annuler'),
                                       onPressed: () {
-                                        setState(() {
-                                    
+                                         setState(() {
+                                          DBProvider.db
+                                              .updateTeam(widget.teams[index]);
+                                          widget.teams[index].selected ==
+                                              'false';
+
+                                          // gestion du budget
+                                          sharedPrefMoney.gestionOfMoney(
+                                              int.parse('${widget.money}') +
+                                                  widget.teams[index].price);
+                                          widget.money =
+                                              int.parse('${widget.money}') +
+                                                  widget.teams[index].price;
+                                          // ajout equipe
+
+                                          widget.teams[index].selected =
+                                              'false';
                                         });
                                       },
                                     ) :
@@ -239,20 +254,20 @@ class PhotosListState extends State<PhotosList> {
                                       onPressed: () {
                                         setState(() {
                                           DBProvider.db
-                                              .updateTeam(widget.photos[index]);
-                                          widget.photos[index].selected ==
+                                              .updateTeam(widget.teams[index]);
+                                          widget.teams[index].selected ==
                                               'true';
 
                                           // gestion du budget
                                           sharedPrefMoney.gestionOfMoney(
                                               int.parse('${widget.money}') -
-                                                  widget.photos[index].price);
+                                                  widget.teams[index].price);
                                           widget.money =
                                               int.parse('${widget.money}') -
-                                                  widget.photos[index].price;
+                                                  widget.teams[index].price;
                                           // ajout equipe
 
-                                          widget.photos[index].selected =
+                                          widget.teams[index].selected =
                                               'true';
                                         });
                                       },
