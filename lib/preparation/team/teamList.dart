@@ -12,9 +12,9 @@ class TeamList extends StatefulWidget {
 
 class _TeamListState extends State<TeamList> {
   @override
-  void initState()  {
+  void initState() {
     var apiProvider = TeamApiProvider();
-     apiProvider.getAllTeam();
+    apiProvider.getAllTeam();
     getMoneyPrefs();
     // getTeamSavePrefs();
     super.initState();
@@ -65,7 +65,6 @@ class _TeamListState extends State<TeamList> {
                     photos: snapshot.data,
                     money: this.money.toString(),
                     teamSave: team
-                    //
                     )
                 : Center(child: CircularProgressIndicator());
           },
@@ -225,14 +224,24 @@ class PhotosListState extends State<PhotosList> {
                                         widget.photos[index].fearFactor
                                             .toString() +
                                         '/10'),
+                                        widget.photos[index].selected ==
+                                              'true'?
                                     FlatButton(
-                                      child:  widget.photos[index].selected == 'true'
-                                          ? const Text('Annuler')
-                                          : const Text('Sélectionner'),
+                                      child:  const Text('Annuler'),
                                       onPressed: () {
                                         setState(() {
-                                          DBProvider.db.updateTeam(widget.photos[index]);
-                                          widget.photos[index].selected == 'true';
+                                    
+                                        });
+                                      },
+                                    ) :
+                                     FlatButton(
+                                      child:  const Text('Sélectionner'),
+                                      onPressed: () {
+                                        setState(() {
+                                          DBProvider.db
+                                              .updateTeam(widget.photos[index]);
+                                          widget.photos[index].selected ==
+                                              'true';
 
                                           // gestion du budget
                                           sharedPrefMoney.gestionOfMoney(
@@ -243,7 +252,8 @@ class PhotosListState extends State<PhotosList> {
                                                   widget.photos[index].price;
                                           // ajout equipe
 
-                                         widget.photos[index].selected = 'true';
+                                          widget.photos[index].selected =
+                                              'true';
                                         });
                                       },
                                     ),
