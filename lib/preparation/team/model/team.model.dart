@@ -1,4 +1,5 @@
 class Team {
+  int id;
   String name;
   String status;
   String image;
@@ -13,10 +14,12 @@ class Team {
   int capacityExplosiveFactor;
   String positionOfPlan;
   int price;
-  bool selected;
+  String selected;
 
   Team(
-      {this.name,
+      {
+      this.id,
+      this.name,
       this.capacityExplosiveFactor,
       this.capacityHostageFactor,
       this.capacityTechnologyFactor,
@@ -34,6 +37,7 @@ class Team {
 
   factory Team.fromJson(Map<String, dynamic> json) {
     return new Team(
+        id: json['id'],
         name: json['name'],
         status: json['status'],
         image: json['image'],
@@ -51,21 +55,24 @@ class Team {
         selected: json['selected']);
   }
 
-  // Map<String, dynamic> toJson() => {
-  //       'name': name,
-  //       'status': status,
-  //       'image': image,
-  //       'happyFactor': happyFactor,
-  //       'fearFactor': fearFactor,
-  //       'trustPlanFactor': trustPlanFactor,
-  //       'trustProfessorFactor': trustProfessorFactor,
-  //       'crazyFactor': crazyFactor,
-  //       'capacityWeaponFactor': capacityWeaponFactor,
-  //       'capacityHostageFactor': capacityHostageFactor,
-  //       'capacityTechnologyFactor': capacityTechnologyFactor,
-  //       'capacityExplosiveFactor': capacityExplosiveFactor,
-  //       'positionOfPlan': positionOfPlan
-  //     };
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'status': status,
+        'image': image,
+        'happyFactor': happyFactor,
+        'fearFactor': fearFactor,
+        'trustPlanFactor': trustPlanFactor,
+        'trustProfessorFactor': trustProfessorFactor,
+        'crazyFactor': crazyFactor,
+        'capacityWeaponFactor': capacityWeaponFactor,
+        'capacityHostageFactor': capacityHostageFactor,
+        'capacityTechnologyFactor': capacityTechnologyFactor,
+        'capacityExplosiveFactor': capacityExplosiveFactor,
+        'positionOfPlan': positionOfPlan,
+        'price': price,
+        'selected': selected
+      };
 }
 
 class ListeTeam {

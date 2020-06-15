@@ -1,5 +1,6 @@
 [
-    {
+    {   
+       
         "name": "Rio",
         "status": "actif",
         "image": "assets/team/rio.jpg",
@@ -14,9 +15,10 @@
         "capacityExplosiveFactor": 6,
         "positionOfPlan": "Salon4",
         "price": 500,
-        "selected": false
+        "selected": ""
     },
     {
+        
         "name": "Denver",
         "status": "actif",
         "image": "assets/team/denver.jpg",
@@ -31,9 +33,10 @@
         "capacityExplosiveFactor": 6,
         "positionOfPlan": "Salon4",
         "price": 56,
-        "selected": false
+        "selected": ""
     },
     {
+       
         "name": "Nairobi",
         "status": "actif",
         "image": "assets/team/denver.jpg",
@@ -48,6 +51,6 @@
         "capacityExplosiveFactor": 6,
         "positionOfPlan": "Salon4",
         "price": 0,
-        "selected": false
+        "selected": ""
     }
 ]

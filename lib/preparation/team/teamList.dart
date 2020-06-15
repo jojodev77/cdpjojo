@@ -1,9 +1,9 @@
+import 'package:dju/preparation/databaseSqflite/database.dart';
 import 'package:dju/preparation/team/model/team.model.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:logger/logger.dart';
 
 import '../preparation.storage.dart';
-import 'teamList.service.dart';
 
 class TeamList extends StatefulWidget {
   @override
@@ -11,8 +11,21 @@ class TeamList extends StatefulWidget {
 }
 
 class _TeamListState extends State<TeamList> {
+  @override
+  void initState()  {
+    var apiProvider = TeamApiProvider();
+     apiProvider.getAllTeam();
+    getMoneyPrefs();
+    // getTeamSavePrefs();
+    super.initState();
+
+    // Additional initialization of the State
+  }
+
   SharedPrefMoney sharedPrefMoney = SharedPrefMoney();
   var money;
+  Team team = Team();
+  Team user;
   getMoneyPrefs() async {
     sharedPrefMoney.getGestionOfMoney().then((value) {
       setState(() {
@@ -23,13 +36,6 @@ class _TeamListState extends State<TeamList> {
 
   ListeTeam _team;
   bool _loaded = false;
-  @override
-  void initState() {
-    getMoneyPrefs();
-    super.initState();
-
-    // Additional initialization of the State
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,13 +55,18 @@ class _TeamListState extends State<TeamList> {
       backgroundColor: Colors.red,
       body: Padding(
         child: FutureBuilder<List<Team>>(
-          future: fetchPosts(),
-          builder: (context, snapshot) {
+          future: DBProvider.db.getAllTeam(),
+          // fetchPosts(),
+          builder: (context, AsyncSnapshot snapshot) {
             if (snapshot.hasError) print(snapshot.error);
 
             return snapshot.hasData
                 ? PhotosList(
-                    photos: snapshot.data, money: this.money.toString())
+                    photos: snapshot.data,
+                    money: this.money.toString(),
+                    teamSave: team
+                    //
+                    )
                 : Center(child: CircularProgressIndicator());
           },
         ),
@@ -68,8 +79,21 @@ class _TeamListState extends State<TeamList> {
 class PhotosList extends StatefulWidget {
   final List<Team> photos;
   var money;
+  Team team;
+  Team teamSave = Team();
 
-  PhotosList({Key key, this.photos, this.money}) : super(key: key);
+  final logger = Logger(
+      printer: PrettyPrinter(
+    methodCount: 0,
+    errorMethodCount: 5,
+    lineLength: 50,
+    colors: true,
+    printEmojis: true,
+    printTime: false,
+  ));
+
+  PhotosList({Key key, this.photos, this.money, this.teamSave})
+      : super(key: key);
   @override
   PhotosListState createState() => PhotosListState();
 }
@@ -78,6 +102,8 @@ class PhotosListState extends State<PhotosList> {
   var money;
 
   SharedPrefMoney sharedPrefMoney = SharedPrefMoney();
+  SharedPrefTeam sharedPrefTeam = SharedPrefTeam();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -178,7 +204,7 @@ class PhotosListState extends State<PhotosList> {
                                 child: ButtonBar(
                                   children: <Widget>[
                                     Text(
-                                        'Joyeux:' +
+                                        'Joyeuxxx:' +
                                             "" +
                                             widget.photos[index].happyFactor
                                                 .toString() +
@@ -200,15 +226,24 @@ class PhotosListState extends State<PhotosList> {
                                             .toString() +
                                         '/10'),
                                     FlatButton(
-                                      child: const Text('Sélectionner'),
+                                      child:  widget.photos[index].selected == 'true'
+                                          ? const Text('Annuler')
+                                          : const Text('Sélectionner'),
                                       onPressed: () {
                                         setState(() {
+                                          DBProvider.db.updateTeam(widget.photos[index]);
+                                          widget.photos[index].selected == 'true';
+
+                                          // gestion du budget
                                           sharedPrefMoney.gestionOfMoney(
                                               int.parse('${widget.money}') -
                                                   widget.photos[index].price);
                                           widget.money =
                                               int.parse('${widget.money}') -
                                                   widget.photos[index].price;
+                                          // ajout equipe
+
+                                         widget.photos[index].selected = 'true';
                                         });
                                       },
                                     ),
