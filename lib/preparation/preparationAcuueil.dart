@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'material/materialList.dart';
 import 'preparation.storage.dart';
 import 'team/teamList.dart';
 
@@ -65,6 +66,13 @@ SharedPrefMoney sharedPrefMoney = SharedPrefMoney();
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Padding(
+                  padding: EdgeInsets.fromLTRB(5, 5, 20, 5),
+                  child: Text(
+                    '',
+                    style: TextStyle(fontSize: 22),
+                  ),
+                ),
                   Container(
                     width: 110,
                     height: 150,
@@ -113,7 +121,12 @@ SharedPrefMoney sharedPrefMoney = SharedPrefMoney();
                       ),
                       color: Colors.lightBlue,
                       textColor: Colors.black,
-                      onPressed: () {},
+                      onPressed: () { Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MaterialPreparationList()),
+                        );
+                      },
                     ),
                   ),
                   Padding(
@@ -134,7 +147,7 @@ SharedPrefMoney sharedPrefMoney = SharedPrefMoney();
                             style: BorderStyle.solid),
                       ),
                       child: Text(
-                        "votre équipe",
+                        "Création des plans",
                         textAlign: TextAlign.center,
                       ),
                       color: Colors.lightBlue,
@@ -151,27 +164,8 @@ SharedPrefMoney sharedPrefMoney = SharedPrefMoney();
                 ],
               ),
               Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-                Container(
-                  width: 110,
-                  height: 150,
-                  child: MaterialButton(
-                    shape: CircleBorder(
-                      side: BorderSide(
-                          width: 2,
-                          color: Colors.red,
-                          style: BorderStyle.solid),
-                    ),
-                    child: Text(
-                      "Création des plans",
-                      textAlign: TextAlign.center,
-                    ),
-                    color: Colors.lightBlue,
-                    textColor: Colors.black,
-                    onPressed: () {},
-                  ),
-                ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                  padding: EdgeInsets.fromLTRB(5, 5, 100, 5),
                   child: Text(
                     '',
                     style: TextStyle(fontSize: 22),
