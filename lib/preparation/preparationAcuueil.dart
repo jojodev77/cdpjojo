@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'buildPlan/buildPlan.dart';
 import 'material/materialList.dart';
 import 'plan/plan.dart';
 import 'preparation.storage.dart';
@@ -163,7 +164,7 @@ SharedPrefMoney sharedPrefMoney = SharedPrefMoney();
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => TeamList()),
+                              builder: (context) => BuildPlan()),
                         );
                       },
                     ),

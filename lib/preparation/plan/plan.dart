@@ -64,52 +64,27 @@ class _PlanState extends State<Plan> {
                   decoration: new BoxDecoration(
                       border: new Border.all(
                           color: Colors.green,
-                          width: 30.0,
+                          width: 40.0,
                           style: BorderStyle.none),
                       image: new DecorationImage(
                         image: new AssetImage('assets/plan/porte.PNG'),
                       )),
                 ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                  child: Text(
-                    '',
-                    style: TextStyle(fontSize: 22),
-                  ),
-                ),
                 Text('Porte blindé'),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                  child: Text(
-                    '',
-                    style: TextStyle(fontSize: 22),
-                  ),
-                ),
+               
                 Container(
                   decoration: new BoxDecoration(
                       border: new Border.all(
                           color: Colors.brown,
-                          width: 30.0,
+                          width: 40.0,
                           style: BorderStyle.none),
                       image: new DecorationImage(
                         image: new AssetImage('assets/plan/COFFREFORT.PNG'),
                       )),
                 ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                  child: Text(
-                    '',
-                    style: TextStyle(fontSize: 22),
-                  ),
-                ),
+              
                 Text('Fenêtre'),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                  child: Text(
-                    '',
-                    style: TextStyle(fontSize: 22),
-                  ),
-                ),
+                
                 Container(
                   decoration: new BoxDecoration(
                       border: new Border.all(
@@ -119,13 +94,6 @@ class _PlanState extends State<Plan> {
                       image: new DecorationImage(
                         image: new AssetImage('assets/plan/fenetre.PNG'),
                       )),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                  child: Text(
-                    '',
-                    style: TextStyle(fontSize: 22),
-                  ),
                 ),
               ],
             ),
