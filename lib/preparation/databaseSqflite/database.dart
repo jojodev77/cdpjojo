@@ -83,7 +83,7 @@ class TeamApiProvider {
     List responseJson = json.decode(url);
 
     return (responseJson).map((team) {
-      print('Inserting $team');
+      // print('Inserting $team');
       DBProvider.db.createDBTeam(Team.fromJson(team));
     }).toList();
   }
@@ -108,23 +108,24 @@ class TeamApiProvider {
 
   initDBMaterial() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, "DBMaterial.db");
-    return await openDatabase(path, version: 1, onOpen: (db) {},
+    String path = join(documentsDirectory.path, "DBMaterialPreparation.db");
+    return await openDatabase(path, version: 2, onOpen: (db) {},
         onCreate: (Database db, int version) async {
       await db.execute(
-        'CREATE TABLE Material (id INTEGER AUTO_INCREMENT PRIMARY KEY,activ INTEGER, dangerous INTEGER,distance INTEGER,image TEXT, name TEXT,price INTEGER,quantity INTEGER,timing INTEGER, type TEXT,selected TEXT)');
+        'CREATE TABLE IF NOT EXISTS MaterialPreparation (id INTEGER, dangerous INTEGER,distance INTEGER,image TEXT, name TEXT,price INTEGER,quantity INTEGER,timing INTEGER, type TEXT,selected TEXT)');
     });
   }
 
   createDBMaterial(MaterialPreparation material) async {
     final db = await database;
-    final res =await db.insert('Material', material.toJson());
+    final res =await db.insert('MaterialPreparation', material.toJson());
     return res;
   }
 
   updateMaterial(MaterialPreparation newMaterial) async {
     final db = await database;
-    var res = await db.update("Material", newMaterial.toJson(),
+     print(newMaterial);
+    var res = await db.update("MaterialPreparation", newMaterial.toJson(),
         where: "id = ?", whereArgs: [newMaterial.id]);
     return res;
   }
@@ -133,29 +134,29 @@ class TeamApiProvider {
    // Delete all employees
   Future<int> deleteAllMaterial() async {
     final db = await database;
-    final res = await db.rawDelete('DELETE FROM newMaterial');
+    final res = await db.rawDelete('DELETE FROM MaterialPreparation');
 
     return res;
   }
 
   Future<List<MaterialPreparation>> getAllMaterial() async {
     final db = await database;
-    final res = await db.rawQuery("SELECT * FROM Material");
+    final res = await db.rawQuery("SELECT * FROM MaterialPreparation");
+    print(res);
 
     List<MaterialPreparation> list =
         res.isNotEmpty ? res.map((c) => MaterialPreparation.fromJson(c)).toList() : [];
-
     return list;
   }
 
   deleteMaterial(int id) async {
     final db = await database;
-    return db.delete("Material", where: "id = ?", whereArgs: [id]);
+    return db.delete("MaterialPreparation", where: "id = ?", whereArgs: [id]);
   }
 
   deleteAll() async {
     final db = await database;
-    db.rawDelete("Delete * from Material");
+    db.rawDelete("Delete * from MaterialPreparation");
   }
 }
 
@@ -165,7 +166,7 @@ class MaterialApiProvider {
     List responseJson = json.decode(url);
 
     return (responseJson).map((material) {
-      print('Inserting $material');
+      // print('Inserting $material');
       DBProviderMaterial.db.createDBMaterial(MaterialPreparation.fromJson(material));
     }).toList();
   }

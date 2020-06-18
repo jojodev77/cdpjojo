@@ -1,6 +1,5 @@
 class MaterialPreparation {
   int id;
-  int activ;
   int dangerous;
   int distance;
   String image;
@@ -13,7 +12,6 @@ class MaterialPreparation {
 
   MaterialPreparation(
       {this.id,
-      this.activ,
       this.dangerous,
       this.distance,
       this.image,
@@ -41,7 +39,7 @@ class MaterialPreparation {
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'activ': activ,
+        // 'activ': activ,
         'dangerous': dangerous,
         'distance': distance,
         'image': image,
@@ -52,6 +50,7 @@ class MaterialPreparation {
         'type': type,
         'selected': selected
       };
+      
 }
 
 class ListeMaterialPreparation {
@@ -70,3 +69,4 @@ class ListeMaterialPreparation {
     );
   }
 }
+

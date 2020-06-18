@@ -16,6 +16,7 @@ class _MaterialPreparationListState extends State<MaterialPreparationList> {
   void initState() {
     var apiProvider = MaterialApiProvider();
     apiProvider.getAllMaterial();
+    DBProviderMaterial.db.getAllMaterial();
     getMoneyPrefs();
     // getTeamSavePrefs();
     super.initState();
@@ -159,7 +160,7 @@ class MaterialPreparationListViewState extends State<MaterialPreparationListView
                                       1.0 // the white space between letter, default is 0.0
                                   )),
                           Text(
-                              'Quzntité:' +
+                              'Quantité:' +
                                   "" +
                                   widget.materials[index].quantity
                                       .toString(),
@@ -194,9 +195,10 @@ class MaterialPreparationListViewState extends State<MaterialPreparationListView
                                       child:  const Text('Annuler'),
                                       onPressed: () {
                                          setState(() {
+                                           print(widget.materials[index].toJson());
                                           DBProviderMaterial.db
                                               .updateMaterial(widget.materials[index]);
-                                          widget.materials[index].selected ==
+                                          widget.materials[index].selected =
                                               'false';
 
                                           // gestion du budget
@@ -218,10 +220,10 @@ class MaterialPreparationListViewState extends State<MaterialPreparationListView
                                       onPressed: () {
                                         setState(() {
                                           DBProviderMaterial.db
-                                              .updateMaterial(widget.materials[index]);
+                                              .updateMaterial(widget.materials[index],);
                                           widget.materials[index].selected =
                                               'true';
-
+                                          
                                           // gestion du budget
                                           sharedPrefMoney.gestionOfMoney(
                                               int.parse('${widget.money}') -

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'material/materialList.dart';
+import 'plan/plan.dart';
 import 'preparation.storage.dart';
 import 'team/teamList.dart';
 
@@ -60,7 +61,13 @@ SharedPrefMoney sharedPrefMoney = SharedPrefMoney();
                   ),
                   color: Colors.lightBlue,
                   textColor: Colors.black,
-                  onPressed: () {},
+                  onPressed: () {
+                     Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Plan()),
+                        );
+                  },
                 ),
               ),
               Row(
