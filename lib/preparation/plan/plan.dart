@@ -64,10 +64,10 @@ class _PlanState extends State<Plan> {
                   decoration: new BoxDecoration(
                       border: new Border.all(
                           color: Colors.green,
-                          width: 15.0,
-                          style: BorderStyle.solid),
+                          width: 30.0,
+                          style: BorderStyle.none),
                       image: new DecorationImage(
-                        image: new AssetImage('assets/team/rio.jpg'),
+                        image: new AssetImage('assets/plan/porte.PNG'),
                       )),
                 ),
                 Padding(
@@ -89,10 +89,10 @@ class _PlanState extends State<Plan> {
                   decoration: new BoxDecoration(
                       border: new Border.all(
                           color: Colors.brown,
-                          width: 15.0,
-                          style: BorderStyle.solid),
+                          width: 30.0,
+                          style: BorderStyle.none),
                       image: new DecorationImage(
-                        image: new AssetImage('assets/team/rio.jpg'),
+                        image: new AssetImage('assets/plan/COFFREFORT.PNG'),
                       )),
                 ),
                 Padding(
@@ -114,10 +114,10 @@ class _PlanState extends State<Plan> {
                   decoration: new BoxDecoration(
                       border: new Border.all(
                           color: Colors.blueAccent,
-                          width: 15.0,
-                          style: BorderStyle.solid),
+                          width: 30.0,
+                          style: BorderStyle.none),
                       image: new DecorationImage(
-                        image: new AssetImage('assets/team/rio.jpg'),
+                        image: new AssetImage('assets/plan/fenetre.PNG'),
                       )),
                 ),
                 Padding(
@@ -145,7 +145,7 @@ class _PlanState extends State<Plan> {
                     style: TextStyle(fontSize: 22),
                   ),
                 ),
-                Text('Fenêtre avec grille'),
+                Text('Grille aération'),
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
                   child: Text(
@@ -157,22 +157,22 @@ class _PlanState extends State<Plan> {
                   decoration: new BoxDecoration(
                       border: new Border.all(
                           color: Colors.blueAccent,
-                          width: 15.0,
-                          style: BorderStyle.solid),
+                          width: 30.0,
+                          style: BorderStyle.none),
                       image: new DecorationImage(
-                        image: new AssetImage('assets/team/rio.jpg'),
+                        image: new AssetImage('assets/plan/ventilations.PNG'),
                       )),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                  padding: EdgeInsets.fromLTRB(0, 0, 5, 0),
                   child: Text(
                     '',
                     style: TextStyle(fontSize: 22),
                   ),
                 ),
-                Text('Grille d\'aération'),
+                Text('Grille d\'aération sécurisée'),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                  padding: EdgeInsets.fromLTRB(0, 0, 5, 0),
                   child: Text(
                     '',
                     style: TextStyle(fontSize: 22),
@@ -182,10 +182,10 @@ class _PlanState extends State<Plan> {
                   decoration: new BoxDecoration(
                       border: new Border.all(
                           color: Colors.black54,
-                          width: 15.0,
-                          style: BorderStyle.solid),
+                          width: 30.0,
+                          style: BorderStyle.none),
                       image: new DecorationImage(
-                        image: new AssetImage('assets/team/rio.jpg'),
+                        image: new AssetImage('assets/plan/ventilation.PNG'),
                       )),
                 ),
                 Padding(
@@ -195,6 +195,12 @@ class _PlanState extends State<Plan> {
                     style: TextStyle(fontSize: 22),
                   ),
                 ),
+                
+               
+              ],
+            ),
+            Row(
+              children: <Widget>[
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
                   child: Text(
@@ -202,7 +208,7 @@ class _PlanState extends State<Plan> {
                     style: TextStyle(fontSize: 22),
                   ),
                 ),
-                Text('Porte'),
+                Text('Caméra'),
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
                   child: Text(
@@ -213,17 +219,51 @@ class _PlanState extends State<Plan> {
                 Container(
                   decoration: new BoxDecoration(
                       border: new Border.all(
-                          color: Colors.green,
-                          width: 15.0,
-                          style: BorderStyle.solid),
+                          color: Colors.blueAccent,
+                          width: 30.0,
+                          style: BorderStyle.none),
                       image: new DecorationImage(
-                        image: new AssetImage('assets/team/rio.jpg'),
+                        image: new AssetImage('assets/plan/camera.PNG'),
                       )),
                 ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 5, 0),
+                  child: Text(
+                    '',
+                    style: TextStyle(fontSize: 22),
+                  ),
+                ),
+                Text('Climatiseur'),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 5, 0),
+                  child: Text(
+                    '',
+                    style: TextStyle(fontSize: 22),
+                  ),
+                ),
+                Container(
+                  decoration: new BoxDecoration(
+                      border: new Border.all(
+                          color: Colors.black54,
+                          width: 30.0,
+                          style: BorderStyle.none),
+                      image: new DecorationImage(
+                        image: new AssetImage('assets/plan/clim.PNG'),
+                      )),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                  child: Text(
+                    '',
+                    style: TextStyle(fontSize: 22),
+                  ),
+                ),
+                
+               
               ],
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 40, 0),
+              padding: EdgeInsets.fromLTRB(0, 0, 30, 0),
               child: Text(
                 '',
                 style: TextStyle(fontSize: 22),
@@ -240,7 +280,7 @@ class _PlanState extends State<Plan> {
                   decoration: new BoxDecoration(
                       border: new Border.all(
                           color: Colors.lightBlueAccent,
-                          width: 200.0,
+                          width: 230.0,
                           style: BorderStyle.none),
                       image: new DecorationImage(
                         image: new AssetImage('assets/plan/toit.PNG'),
