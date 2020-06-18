@@ -264,10 +264,10 @@ class _PlanState extends State<Plan> {
                   decoration: new BoxDecoration(
                       border: new Border.all(
                           color: Colors.lightBlueAccent,
-                          width: 80.0,
-                          style: BorderStyle.solid),
+                          width: 200.0,
+                          style: BorderStyle.none),
                       image: new DecorationImage(
-                        image: new AssetImage('assets/team/rio.jpg'),
+                        image: new AssetImage('assets/plan/rdc.PNG'),
                       )),
                       
                       
@@ -277,10 +277,10 @@ class _PlanState extends State<Plan> {
                   decoration: new BoxDecoration(
                       border: new Border.all(
                           color: Colors.lightBlueAccent,
-                          width: 80.0,
-                          style: BorderStyle.solid),
+                          width: 200.0,
+                          style: BorderStyle.none),
                       image: new DecorationImage(
-                        image: new AssetImage('assets/team/rio.jpg'),
+                        image: new AssetImage('assets/plan/SOUSSOL.PNG'),
                       )),
                       
                       
